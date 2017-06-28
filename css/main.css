@@ -1,0 +1,113 @@
+html, body {
+	background-color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+#all-projects {
+	transition: transform 500ms ease;
+	transition-property: transform, opacity;
+	/*position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow: auto;*/
+}
+#single-project {
+	background-color: #fff;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
+	transition: right 500ms ease;
+	transition-property: right, opacity;
+	border-right: 1px solid #eee;
+	/*display:none;*/
+	/*box-shadow: 2px 0 0px rgba(0,0,0,0.2);*/
+}
+#bj-app {
+	background-color: #fff;
+	transition: background-color 500ms ease;
+}
+#bj-app.single {
+	/*background-color: #333;*/
+}
+#bj-app.single #single-project {
+	opacity: 1;
+}
+#bj-app.single #all-projects {
+	/*transform-origin: center;
+	transform: scale(0.8);*/
+	/*opacity: 0;*/
+}
+#bj-app.all #single-project {
+	opacity: 0;
+}
+#bj-app.all #single-project, #bj-app.all #single-project {
+	pointer-events: none;
+}
+#bj-app.all #all-projects {
+	opacity: 1;
+	transform: none;
+}
+#logo {
+	font-family: 'Julius Sans One', sans-serif;
+	margin-top: 50px;
+	text-align: center;
+	color: #000;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+#tag-line {
+	font-size: 35px;
+	font-family: 'Cormorant Garamond', serif;
+	font-style: italic;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 80px;
+}
+#project-panels {
+	margin-top: 100px;
+	padding-bottom: 100px;
+	
+}
+.project-panel {
+	user-select: none;
+	position: relative;
+	margin-bottom: 30px;
+	background-color: #333;
+	cursor: pointer;
+}
+#single-project-image {
+	width: 100%;
+}
+.project-panel > img {
+	width: 100%;
+	opacity: 1;
+	transition: opacity 500ms ease;
+}
+.project-panel .project-title {
+	font-family: 'Julius Sans One', sans-serif;
+	text-align: center;
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: 2px;
+	font-size: 16px;
+	text-transform: uppercase;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    text-shadow: 0 2px 3px rgba(0,0,0,0.4);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    transition: opacity 500ms ease;
+    opacity: 0;
+}
+.project-panel:hover > img {
+	opacity: 0.5;
+}
+.project-panel:hover .project-title {
+	opacity: 1;
+}
