@@ -4,8 +4,7 @@ html, body {
 	height: 100%;
 }
 #all-projects {
-	/*transition: transform 500ms ease;
-	transition-property: transform, opacity;*/
+	position: relative;
 }
 #single-project-wrapper {
 	background-color: rgba(0,0,0,0.9);
@@ -27,26 +26,24 @@ html, body {
 	cursor: pointer;
 }
 #single-project-image {
-	width: 50%;
 	margin-right: 50px;
 	position: relative;
 	z-index: 1;
 	transform: translateX(50%);
 	margin-right: 0;
-	/*transition: transform 500ms ease;*/
-	/*transition-property: transform, margin-right;*/
+	width: auto;
+	min-width: 50%;
+	max-width: 50%;
+	max-height: calc(100vh - 80px); 
+	opacity: 0;
+	transition: transform 500ms ease;
+	transition-property: transform, margin-right, opacity;	
 }
 #single-project-desc {
 	transform: none; /*translateX(-50%);*/
 	width: calc(50% - 50px);
 }
-#single-project-image { /*, #single-project-desc {*/
-	transition: transform 500ms ease;
-	transition-property: transform, margin-right, opacity;
-}
-#single-project-image {
-	opacity: 0;
-}
+
 #single-project-desc {
 	opacity: 1;
 }
@@ -153,6 +150,35 @@ html, body {
 	line-height: 40px;
 	margin-top: 80px;
 }
+.link {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	position: absolute;
+}
+#resume-link, #email-link {
+	padding: 20px 10px;
+	outline: none !important;
+}
+#email-link > svg {
+	width: 26px;
+	height: auto;
+	fill: #666;
+}
+#resume-link > svg {
+	width: 26px;
+	height: auto;
+	fill: #666;
+	stroke: none;
+}
+#email-link > svg,
+#resume-link > svg {
+	transition: fill 200ms ease;
+}
+#email-link:hover > svg,
+#resume-link:hover > svg {
+	fill: #cc444a;
+}
 #project-panels {
 	margin-top: 100px;
 	padding-bottom: 100px;
@@ -174,6 +200,7 @@ html, body {
 	transition: opacity 500ms ease;
 }
 .project-panel .project-title {
+	pointer-events: none;
 	font-family: 'Julius Sans One', sans-serif;
 	text-align: center;
 	color: #fff;
@@ -182,11 +209,19 @@ html, body {
 	font-size: 16px;
 	text-transform: uppercase;
 	position: absolute;
-    top: 47%;
-    left: 50%;
-    transform: translate(-50%, 40px);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*top: 47%;*/
+    /*left: 50%;*/
+    transform: translateY(40px);
     transition: opacity 500ms ease;
     transition-property: opacity, transform;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.4);
     opacity: 0;
 }
 #bj-app:not(.single) .project-panel:hover > img {
@@ -194,7 +229,7 @@ html, body {
 }
 .project-panel:hover .project-title {
 	opacity: 1;
-	transform: translate(-50%, 0px);
+	transform: none;
 }
 .pp-zink { background-color:#88a08a; }
 .pp-dotandjonny { background-color:#cc444a; }
@@ -204,28 +239,30 @@ html, body {
 .pp-texasmonthly { background-color:#3481A3; }
 
 @media (max-width: 767px) {
-  #single-project {
-  	flex-flow: column;
-  	justify-content: flex-start;
-  	height: 100vh;
-  	overflow: auto;
-  	-webkit-overflow-scrolling: touch;
-  }
-  #bj-app.single #single-project-image {
-  	margin-right: 0;
-  }
-  #single-project-image {
-  	margin: 0;
-  	order: 2;
-  	width: 100%;
-  	transform: translateY(-100px);
-  	margin-bottom: 100px;
-  }
-  #single-project-desc {
-  	margin-bottom: 50px;
-  	order: 1;
-  	width: 100%;
-  }
+	#single-project {
+		flex-flow: column;
+		justify-content: flex-start;
+		height: 100vh;
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+	#bj-app.single #single-project-image {
+		margin-right: 0;
+	}
+	#single-project-image {
+		margin: 0;
+		order: 2;
+		width: 100%;
+		transform: translateY(-100px);
+		margin-bottom: 0px;
+		max-width: initial;
+		max-height: initial;
+	}
+	#single-project-desc {
+		margin-bottom: 50px;
+		order: 1;
+		width: 100%;
+	}
  	.desc-client, .desc-role, .desc-project {
 		transform: translateY(40px);
 	}
