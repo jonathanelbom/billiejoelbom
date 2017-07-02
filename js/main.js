@@ -13,6 +13,12 @@ if (window.Element && !Element.prototype.closest) {
 }
 
 (function() {
+	var breakpoint = 768;
+	var nextTick = (function(window, prefixes, i, p, fnc) {
+	    while (!fnc && i < prefixes.length) { fnc = window[prefixes[i++] + 'equestAnimationFrame']; }
+	    return (fnc && fnc.bind(window)) || window.setImmediate || function(fnc) {window.setTimeout(fnc, 0);};
+	})(window, 'r webkitR mozR msR oR'.split(' '), 0);
+	
 	var single = false,
 		bjApp = document.querySelector('#bj-app'),
 		singleProject = bjApp.querySelector('#single-project'),
@@ -22,13 +28,22 @@ if (window.Element && !Element.prototype.closest) {
 		if (e.target.matches('.project-panel,.project-panel *')) {
 			var panel = e.target.closest('.project-panel'),
 				img = panel.querySelector('img'),
-				imgSrc = img.src;
+				imgSrc = img.src,
+				desc = panel.querySelector('.desc'),
+				descClone = desc.cloneNode(true);
 			e.stopPropagation();
 			singleProject.querySelector('#single-project-image').src = imgSrc;
-			console.log('imgSrc:',imgSrc,'\nimg:',img,'\npanel:',panel,'\ne.target:',e.target);
+			singleProject.querySelector('#single-project-desc').innerHTML = '';
+			singleProject.querySelector('#single-project-desc').appendChild(descClone);
+			//console.log('imgSrc:',imgSrc,'\nimg:',img,'\npanel:',panel,'\ne.target:',e.target);
 		}
-		bjApp.classList.remove('single', 'all');
-		bjApp.classList.add(single ? 'all' : 'single');
-		single = !single;
+		nextTick(function() {
+			bjApp.classList.remove('single', 'all');
+			bjApp.classList.add(single ? 'all' : 'single');
+			single = !single;
+			if (single) {
+				singleProject.scrollTop = 0;
+			}
+		});
 	});
 })();
