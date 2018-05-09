@@ -232,6 +232,8 @@ html, body {
 .pp-uhills { background-color:#525A54; }
 .pp-beevsmoth { background-color:#7A5E32; } /*#604A27*/
 .pp-texasmonthly { background-color:#3481A3; }
+.pp-TACFS { background-color:#6C9B91; }
+.pp-prufrock { background-color:#CD5835; }
 
 @media (max-width: 767px) {
 	#single-project {
